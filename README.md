@@ -1,2 +1,2 @@
 # Ecommerce_Project
- Tech : HTML5 , SASS , VUE . JS , 
+Tech : Html5 , Sass , Bootstrap , Vue . js , Vuex , Api , Node . js , MongoDB , Express.js
