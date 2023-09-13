@@ -8,8 +8,14 @@
     >
       <span class="text-secondary">Welcom back !!!</span>
       <h1>Sign in</h1>
-      <input type="text" placeholder="Email" v-model="email" />
-      <input type="password" placeholder="Password" v-model="password" />
+      <input type="text" placeholder="Email" v-model="email" required />
+      <input
+        type="password"
+        placeholder="Password"
+        v-model="password"
+        @keyup.enter="login"
+        required
+      />
       <a href="#" class="align-self-end mt-2">forget password !?</a>
       <button class="btn align-self-center btn1 w-50 mt-3" @click="login">
         <span v-if="!spinner">Sign in</span>
@@ -21,7 +27,7 @@
         </button></span
       >
     </div>
-    <img src="../../assets/LoginGallary/Group 2014.png" alt="" />
+    <img src="../../assets/LoginGallary/Login.png"  alt="" />
   </section>
   <mobile :show="mobile" class="mobile">
     <h4>This Web site Working Only on Personal Computers (PCs)</h4>
@@ -51,7 +57,7 @@ export default {
       adminrole: false,
       mobile: false,
       spinner: false,
-
+      token:''
     };
   },
   created() {
@@ -80,8 +86,11 @@ export default {
         if (response.data && response.data.adminrole !== undefined) {
           this.clear();
           this.adminrole = response.data.adminrole;
+          const token = response.data.token;
+          localStorage.setItem('token', token);
           this.$root.isAuthenticated = true;
           localStorage.setItem("isAuthenticated", "true");
+          localStorage.setItem("UserID",response.data.UserIdLogin);
           if (this.adminrole == true) {
             setTimeout(() => {
               this.$router.replace("/admin");
@@ -93,14 +102,13 @@ export default {
           }
         } else {
           console.log("Invalid response format");
-          this.HandleError(2000,true);
+          this.HandleError(2000, true);
         }
-      } 
-      catch (err) {
-        this.HandleError(2000,true);
+      } catch (err) {
+        this.HandleError(2000, true);
       }
-      this.HandleError(4000,false);
-      this.spinnerTimer(5000);
+      this.HandleError(3000, false);
+      this.spinnerTimer(2000);
     },
     signup() {
       this.$router.push("/auth/signup");
@@ -110,16 +118,16 @@ export default {
       this.password = "";
       this.loginerror = false;
     },
-    HandleError(time,stat){
+    HandleError(time, stat) {
       setTimeout(() => {
-          this.loginerror = stat;
-        }, time);
+        this.loginerror = stat;
+      }, time);
     },
-    spinnerTimer(time){
+    spinnerTimer(time) {
       setTimeout(() => {
-          this.spinner = false;
-        }, time);
-    }
+        this.spinner = false;
+      }, time);
+    },
   },
 };
 </script>
@@ -138,16 +146,16 @@ export default {
     width: 100%;
   }
   button {
-    background-color: #f47458;
+    background-color: #BA68C8;
     color: white;
     transition: 0.5s ease;
   }
   .btn2 {
     background-color: transparent;
-    color: #f47458;
-    border: 1px solid #f47458;
+    color: #BA68C8;
+    border: 1px solid #BA68C8;
     &:hover {
-      background-color: #f47458;
+      background-color: #BA68C8;
       color: white;
     }
   }

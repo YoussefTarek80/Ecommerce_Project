@@ -11,11 +11,14 @@
   "dependencies": {
     "axios": "^1.4.0",
     "bootstrap": "^5.3.1",
+    "chart.js": "^4.4.0",
     "form-data": "^4.0.0",
     "multer": "^1.4.5-lts.1",
     "sass": "^1.65.1",
     "swiper": "^10.2.0",
     "vue": "^3.3.4",
+    "vue-chartjs": "^5.2.0",
+    "vue-loading-overlay": "6.0",
     "vue-router": "^4.2.4",
     "vuex": "^4.0.2"
   },

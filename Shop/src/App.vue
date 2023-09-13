@@ -1,8 +1,10 @@
 <template>
+  
   <router-view></router-view>
 </template>
 
 <script>
+
 export default {
   data() {
     return {
@@ -22,6 +24,7 @@ export default {
       }
     },
   },
+
 };
 </script>
 
@@ -34,5 +37,12 @@ export default {
 }
 section {
   padding-top: 60px;
+}
+::-webkit-scrollbar{
+  width: 10px;
+}
+::-webkit-scrollbar-thumb{
+  background-color: black;
+  border-radius: 10px;
 }
 </style>

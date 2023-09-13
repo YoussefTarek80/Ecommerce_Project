@@ -1,7 +1,8 @@
 export default {
     getProducts(state) {
-        // console.log(state.products)
-        return state.products;
-        
+        return state.products; 
     },
+    getSize(state){
+        return state.products.length;
+    }
 };

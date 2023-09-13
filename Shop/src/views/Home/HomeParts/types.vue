@@ -61,6 +61,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$color:#7C3FFF;
+$second_color:#f47458;
+$third_color:#ba68c8;
 .card {
   padding: 20px;
   margin-bottom: 10px;
@@ -73,8 +76,14 @@ export default {
 .btn{
     background: white;
     font-size: larger;
+    font-weight: 700;
     i{
         padding: 10px;
+    }
+    &:hover{
+      border: 1px solid $third_color;
+      color:white;
+      background: $third_color;
     }
 }
 .shopping{
@@ -86,7 +95,7 @@ export default {
     .info{
       line-height: 6rem;
       .year{
-        color:$color;
+        color:$third_color;
       }
       span{
         font-size: 50px;

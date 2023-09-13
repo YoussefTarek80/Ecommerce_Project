@@ -1,48 +1,66 @@
-import { createRouter,createWebHistory } from "vue-router";
-import axios from "axios";
-import HomePage from './src/views/Home/HomePage.vue'
-import AdminDashboard from './src/views/Dashboard/AdminDashboard.vue'
-import shop from './src/views/shop/ShopPage.vue'
-import login from './src/views/Auth/login.vue'
-import signup from './src/views/Auth/signup.vue'
+import { createRouter, createWebHistory } from "vue-router";
 const router = createRouter({
-    history:createWebHistory(),
-    routes:[
-        {path:'/',redirect:'/auth/login'},
-        { path: '/auth/login', component: login},
-        { path: '/auth/signup', component: signup },
-        { path: '/client/home', component: HomePage,meta: { requiresAuth: true } },
-        { path: '/admin', component: AdminDashboard,meta: { requiresAuth: true, requiresAdmin: true }  },
-        { path: '/client/shop', component: shop,meta: { requiresAuth: true } },
-    ],
+  history: createWebHistory(),
+  linkActiveClass: 'active-link',
+  linkExactActiveClass: 'exact-active-link',
+  routes: [
+    { path: "/", redirect: "/auth/login" },
+    {
+      path: "/auth/login",
+      component: () => import("./src/views/Auth/login.vue"),
+    },
+    {
+      path: "/auth/signup",
+      component: () => import("./src/views/Auth/signup.vue"),
+    },
+    {
+      path: "/client/home",
+      component: () => import("./src/views/Home/HomePage.vue"),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: "/admin",
+      component: () => import("./src/views/Dashboard/AdminDashboard.vue"),
+      meta: { requiresAuth: true, requiresAdmin: true },
+    },
+    {
+      path: "/client/shop",
+      component: () => import("./src/views/shop/ShopPage.vue"),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: "/client/cart",
+      component: () => import("./src/views/shop/ShopParts/cart.vue"),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: "/client/cart/payment",
+      component: () => import("./src/views/Payment/paymentPage.vue"),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: "/client/cart/payment/successfully",
+      component: () =>
+        import("./src/views/Payment/PaymentParts/SuccessfulPay.vue"),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: "/client/contact",
+      component: () =>
+        import("./src/views/Contact_US/ContactAdmins.vue"),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: "/client/sale",
+      component: () =>
+        import("./src/views/Sale/Sale.vue"),
+      meta: { requiresAuth: true },
+    },
+  ],
+});
+router.beforeEach((to, from, next) => {
+  window.scrollTo(0, 0);
+  next();
+});
 
-})
-// router.beforeEach(async (to, from, next) => {
-  
-//     try {
-//       const users=[];
-//       const response = await axios.get("http://localhost:3000/auth/getusers");
-//       // users.push(...response.data);
-//       console.log(response);
-//       if (to.meta.requiresAdmin && !adminrole) {
-//         next({ path: '/client/home' }); 
-//       } 
-//       else if(adminrole) {
-//         next({ path: '/admin' }); 
-//       }
-//       else{
-//         next();
-//       }
-//     } catch (error) {
-//       console.error(error);
-//       next(); 
-//     }
-  
-//   });
-  
-  
-  
-  
-  
-  
-export default router
+export default router;

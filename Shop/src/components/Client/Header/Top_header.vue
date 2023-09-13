@@ -25,6 +25,8 @@ export default{
 </script>
 <style scoped lang="scss">
     $color:#7C3FFF;
+    $second_color:#FF725E;
+    $third_color:#ba68c8;
     .links a{
         color: white;
         text-decoration: none;
@@ -34,7 +36,7 @@ export default{
         color: white;
     }
     .info-header{
-        background-color: $color;
+        background-color: $third_color;
         font-weight: 300;
     }
 </style>
